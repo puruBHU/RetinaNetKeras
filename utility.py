@@ -19,8 +19,9 @@ def convert_to_xywh(boxes):
 
 def convert_to_corner(boxes):
 	'''
-	:param boxes: A tensor with shape '(num_boxes, 4)' representing bounding boxes
-	:return:
+	:param boxes: A tensor with shape '(num_boxes, 4)' representing bounding boxes where boxes are of format
+	'[x, y, width, height]'
+	:return: A tensor of same shape as that of input tensor in format '[xtop, ytop, xbot, ybot]'
 	'''
 	return tf.concat([boxes[...,:2] - boxes[...,2:] / 2.0, boxes[...,:2] + boxes[...,2:] / 2.0], axis=-1)
 
